@@ -1,0 +1,10 @@
+const appname = " Ebuy";
+const appversion = "Version 1.0.0";
+const email = 'Email';
+const emailExample = "admin@admin.com"; 
+const password = "Password";
+const passwordExample = "******";
+const forgetPassword = "Forget Password";
+const login = "Log in";
+const signup = "Sign up";
+const createNewAccount = "or, create a new account";
