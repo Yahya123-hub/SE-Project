@@ -39,9 +39,9 @@ void initState(){
         child: Column( 
           children: [
             Align(alignment: Alignment.topLeft,child:Image.asset(icSplashBg,width: 300)),
-            20.heightBox,
+            //20.heightBox,
             applogoWidget(),
-            1.heightBox,
+            //1.heightBox,
             name.text.fontFamily(bold).size(22).white.make(),
             5.heightBox,
             //appversion.text.white.make(),

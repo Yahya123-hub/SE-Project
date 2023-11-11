@@ -19,7 +19,7 @@ class login_screen extends StatelessWidget {
             resizeToAvoidBottomInset: false,
         body: Center(
           child: Column(children: [
-            (context.screenHeight * 0.1).heightBox,
+            (context.screenHeight * 0.05).heightBox,
             applogoWidget(),
             //10.heightBox,
             "LOG IN TO EBuy".text.fontFamily(bold).white.size(18).make(),
