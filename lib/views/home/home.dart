@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/consts/consts.dart';
 import 'package:ecommerce_app/controllers/homeController.dart';
 import 'package:ecommerce_app/views/cart/cart_screen.dart';
-import 'package:ecommerce_app/views/category/category_screen.dart';
+import 'package:ecommerce_app/views/categories/category_screen.dart';
 import 'package:ecommerce_app/views/home/home_screen.dart';
 import 'package:ecommerce_app/views/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +25,7 @@ class Home extends StatelessWidget {
     var navBarBody = [
       const HomeScreen(),
       const CategoryScreen(),
+      
       const CartScreen(),
       const ProfileScreen()
     ];
