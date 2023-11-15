@@ -43,3 +43,12 @@ sports = "Sports",
 jewelery = "Jewelery",
 cellphone = "Cellphone & Tab",
 furniture = "Furniture";
+
+//product details strings
+const 
+video ="Video",
+reviews = "Reviews",
+sellerpolicy = "Seller Policy",
+returnpolicy = "Return Policy", 
+supportPolicy = "Support Policy",
+productsYouMayAlsoLike = "Products you may also like";

@@ -1,6 +1,8 @@
+import 'package:ecommerce_app/consts/consts.dart';
 import 'package:ecommerce_app/views/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:ecommerce_app/consts/styles.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,14 @@ class MyApp extends StatelessWidget {
       title: 'E-commerce App',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.transparent,
-        appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent)
+        appBarTheme: const AppBarTheme(
+          iconTheme: IconThemeData(
+            color: darkFontGrey
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          
+        )
         
 
       ),

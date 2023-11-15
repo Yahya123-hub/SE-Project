@@ -25,3 +25,6 @@ imgFc5,
 imgFc6,
 imgFc7,
 imgFc8, imgFc9];
+
+const itemDetailButtonsList =
+[video, reviews, privacyPolicy, returnpolicy, supportPolicy];

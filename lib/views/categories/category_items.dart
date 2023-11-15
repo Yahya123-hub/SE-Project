@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/consts/consts.dart';
+import 'package:ecommerce_app/views/categories/product_details.dart';
 import 'package:ecommerce_app/widgets/background.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class categoryDetails extends StatelessWidget {
@@ -48,7 +50,9 @@ class categoryDetails extends StatelessWidget {
                       10.heightBox,
                       "\$600".text.color(redColor).fontFamily(bold).size(16).make()
                   ],
-                ).box.white.margin(const EdgeInsets.symmetric(horizontal: 4)).roundedSM.outerShadowSm.padding(const EdgeInsets.all(12)).make();
+                ).box.white.margin(const EdgeInsets.symmetric(horizontal: 4)).roundedSM.outerShadowSm.padding(const EdgeInsets.all(12)).make().onTap(() {
+                  Get.to(()=>productDetails(title: "example product"));
+                });
                               
               }))
             ],
