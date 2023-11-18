@@ -15,6 +15,7 @@ const nameHint = "Ayesha Nadeem";
 const privacyPolicy = "Privacy Policy";
 const termAndCond = "Terms and Conditions";
 const already = "Already have an account? ";
+const logout = "Log out";
 //home strings
 const home = "Home", categories = "Categories", cart = "Cart", account = "Account";
 //home screen strings
@@ -52,3 +53,6 @@ sellerpolicy = "Seller Policy",
 returnpolicy = "Return Policy", 
 supportPolicy = "Support Policy",
 productsYouMayAlsoLike = "Products you may also like";
+
+//profile 
+const wishlist = "My Wishlist", orders = "My Orders", messages="Messages";
