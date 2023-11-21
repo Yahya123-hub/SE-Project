@@ -1,11 +1,34 @@
 import 'package:ecommerce_app/consts/consts.dart';
 import 'package:ecommerce_app/views/splash_screen/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:ecommerce_app/consts/styles.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+void main () async{
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  // runApp(const MyApp());
+
+  WidgetsFlutterBinding.ensureInitialized();
+await Firebase.initializeApp(
+  options: FirebaseOptions(   
+    apiKey: "AIzaSyBeAZYoguRhndpYvL20JlaZqgitr3j3Qs8",
+    projectId: "ecommerce-app-96c5b",
+    messagingSenderId: "587653152678",
+    appId: "1:587653152678:android:3dafc2f480fb218c371967",
+  ),
+);
+runApp(const MyApp());
+
+//   try {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   runApp(const MyApp());
+// } catch (e) {
+//   print('Error initializing Firebase: $e');
+// }
 }
 
 class MyApp extends StatelessWidget {

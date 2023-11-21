@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/consts/consts.dart';
 import 'package:ecommerce_app/consts/lists.dart';
+import 'package:ecommerce_app/controllers/auth_controller.dart';
 import 'package:ecommerce_app/views/authentication_screen/signup.dart';
 import 'package:ecommerce_app/views/home/home.dart';
 import 'package:ecommerce_app/widgets/appLogo_widget.dart';
@@ -14,6 +15,9 @@ class login_screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var controller = Get.put(AuthController());
+
     return bgWidget(
           child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -27,8 +31,8 @@ class login_screen extends StatelessWidget {
 
             Column(
               children: [
-                customTextField(hint: emailExample,title: email),
-                customTextField(hint: passwordExample, title: password),
+                customTextField(hint: emailExample,title: email,isPwd: false,controller: controller.emailController),
+                customTextField(hint: passwordExample, title: password,isPwd: true,controller: controller.passwordController),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(onPressed: (){},child: forgetPassword.text.make()),
@@ -37,8 +41,18 @@ class login_screen extends StatelessWidget {
                 ),
                  5.heightBox,
                  //button().box.width(context.screenWidth-50).make(),
-                  button(color: blackColor,title: login,textColor: whiteColor,onPress: (){
-                    Get.to(()=>Home());
+                  button(color: blackColor,
+                  title: login,
+                  textColor: whiteColor,
+                  onPress: () async {
+                    //Get.to(()=>Home());
+                    await controller.loginMethod(context: context).then((value){
+                      if (value != null){
+                        VxToast.show(context, msg: successLogin);
+                        Get.offAll(() => const Home());
+                      }
+                    });
+
                   }).box.width(context.screenWidth-50).make(),
                   5.heightBox,
                   createNewAccount.text.color(fontGrey).make(),

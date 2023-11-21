@@ -1,8 +1,12 @@
 import 'package:ecommerce_app/consts/consts.dart';
 import 'package:ecommerce_app/consts/lists.dart';
+import 'package:ecommerce_app/controllers/auth_controller.dart';
+import 'package:ecommerce_app/views/authentication_screen/login.dart';
 import 'package:ecommerce_app/views/profile/components/detailCard.dart';
 import 'package:ecommerce_app/widgets/background.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -46,7 +50,10 @@ class ProfileScreen extends StatelessWidget {
                           color: whiteColor,
                         )
                       ),
-                      onPressed: (){}, 
+                      onPressed: ()async{
+                        await Get.put(AuthController()).signoutMethod(context);
+                        Get.offAll(() => const login_screen());
+                      }, 
                       child: logout.text.fontFamily(semibold).white.make()
                       )
                   ],

@@ -1,13 +1,14 @@
 import 'package:ecommerce_app/consts/consts.dart';
 
-Widget customTextField({String? title,String? hint, controller}) {
+Widget customTextField({String? title,String? hint, controller,isPwd}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       title!.text.color(blackColor).fontFamily(semibold).size(16).make(),
       5.heightBox,
       TextFormField(
-        //controller: controller,
+        obscureText: isPwd,
+        controller: controller,
         decoration: InputDecoration(
           hintStyle: TextStyle(
           fontFamily: semibold, color: textfieldGrey,), // TextStyle
