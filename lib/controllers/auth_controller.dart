@@ -2,9 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/consts/consts.dart';
 import 'package:ecommerce_app/consts/firebase_consts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class AuthController extends GetxController{
+
+  var isLoading = false.obs;
   //text controllers
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -32,7 +35,7 @@ return userCredential;
 //storing data method
 storeUserData({name, password, email}) async{
 DocumentReference store = firestore.collection(usersCollection).doc(currentUser!.uid); 
-store.set({'name': name, 'password': password, 'email': email, 'imageUrl': ''});
+store.set({'name': name, 'password': password, 'email': email, 'imageUrl': '','id':currentUser!.uid});
 }
 
 //signout method
