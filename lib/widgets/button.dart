@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/consts/consts.dart';
 
-Widget button({onPress,color,textColor,String? title}){
+Widget button(/*required Color color,*/ {onPress,color,textColor,String? title}){
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       backgroundColor: color,

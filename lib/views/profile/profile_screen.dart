@@ -3,6 +3,7 @@ import 'package:ecommerce_app/consts/lists.dart';
 import 'package:ecommerce_app/controllers/auth_controller.dart';
 import 'package:ecommerce_app/views/authentication_screen/login.dart';
 import 'package:ecommerce_app/views/profile/components/detailCard.dart';
+import 'package:ecommerce_app/views/profile/edit_profile.dart';
 import 'package:ecommerce_app/widgets/background.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,9 @@ class ProfileScreen extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.topRight,
                   child: const Icon(Icons.edit,color: whiteColor,),
-                ).onTap(() { }),
+                ).onTap(() { 
+                  Get.to(()=>const editProfile());
+                }),
               ),
               //user details
 
