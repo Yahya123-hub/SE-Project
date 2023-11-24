@@ -20,7 +20,9 @@ class editProfile extends StatelessWidget {
             10.heightBox,
             button(
               color: blackColor,
-              onPress: (){},
+              onPress: (){
+                
+              },
               textColor: whiteColor,
               title: "Change"),
               const Divider(),

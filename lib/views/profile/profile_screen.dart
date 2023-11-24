@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/consts/consts.dart';
 import 'package:ecommerce_app/consts/lists.dart';
 import 'package:ecommerce_app/controllers/auth_controller.dart';
+import 'package:ecommerce_app/controllers/profileController.dart';
 import 'package:ecommerce_app/views/authentication_screen/login.dart';
 import 'package:ecommerce_app/views/profile/components/detailCard.dart';
 import 'package:ecommerce_app/views/profile/edit_profile.dart';
@@ -14,6 +15,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(profileController());
+
     return bgWidget(
       child: Scaffold(
         body: SafeArea(
