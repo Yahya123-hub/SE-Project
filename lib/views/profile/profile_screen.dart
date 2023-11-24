@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/consts/consts.dart';
 import 'package:ecommerce_app/consts/lists.dart';
 import 'package:ecommerce_app/controllers/auth_controller.dart';
 import 'package:ecommerce_app/controllers/profileController.dart';
+import 'package:ecommerce_app/services/firestoreServices.dart';
 import 'package:ecommerce_app/views/authentication_screen/login.dart';
 import 'package:ecommerce_app/views/profile/components/detailCard.dart';
 import 'package:ecommerce_app/views/profile/edit_profile.dart';
@@ -19,7 +21,18 @@ class ProfileScreen extends StatelessWidget {
 
     return bgWidget(
       child: Scaffold(
-        body: SafeArea(
+        body: StreamBuilder(
+          stream: FirestoreServices.getUser(currentUser!.uid), 
+          builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot){
+            
+            if(!snapshot.hasData){
+              return Center(
+                child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(blackColor),),
+              );
+            }
+            else{
+              var data = snapshot.data!.docs[0];
+              return SafeArea(
           child: Column(
             children: [
 
@@ -30,7 +43,7 @@ class ProfileScreen extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: const Icon(Icons.edit,color: whiteColor,),
                 ).onTap(() { 
-                  Get.to(()=>const editProfile());
+                  Get.to(()=> editProfile(data: data));
                 }),
               ),
               //user details
@@ -46,8 +59,8 @@ class ProfileScreen extends StatelessWidget {
                     Expanded(child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        "example user".text.fontFamily(semibold).white.make(),
-                        "example@gmail.com".text.white.make(),
+                        "${data['name']}".text.fontFamily(semibold).white.make(),
+                        "${data['email']}".text.white.make(),
                       ],
                     )),
                     OutlinedButton(
@@ -70,9 +83,9 @@ class ProfileScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  detailCard(count: "00",title: "in your cart",width:context.screenWidth/3.4),
-                  detailCard(count: "10",title: "in your wishlist",width:context.screenWidth/3.4),
-                  detailCard(count: "5",title: "you ordered",width:context.screenWidth/3.4)
+                  detailCard(count: data['cart_count'],title: "in your cart",width:context.screenWidth/3.4),
+                  detailCard(count: data['wishlist_count'],title: "in your wishlist",width:context.screenWidth/3.4),
+                  detailCard(count: data['order_count'],title: "you ordered",width:context.screenWidth/3.4)
                 ],
               ),
 
@@ -100,7 +113,11 @@ class ProfileScreen extends StatelessWidget {
 
             ],
           )
-          ),
+          );
+            }
+
+            
+          })
       )
     );
     

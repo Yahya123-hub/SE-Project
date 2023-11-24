@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/consts/consts.dart';
 import 'package:ecommerce_app/consts/images.dart';
 import 'package:ecommerce_app/controllers/profileController.dart';
@@ -11,7 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class editProfile extends StatelessWidget {
-  const editProfile({super.key});
+
+  final dynamic data;
+  const editProfile({Key? key,this.data}):super(key:key);
 
   @override
   Widget build(BuildContext context) {
