@@ -12,12 +12,13 @@ void main () async{
   // runApp(const MyApp());
 
   WidgetsFlutterBinding.ensureInitialized();
-await Firebase.initializeApp(
+  await Firebase.initializeApp(
   options: FirebaseOptions(   
     apiKey: "AIzaSyBeAZYoguRhndpYvL20JlaZqgitr3j3Qs8",
     projectId: "ecommerce-app-96c5b",
     messagingSenderId: "587653152678",
     appId: "1:587653152678:android:3dafc2f480fb218c371967",
+    storageBucket: "gs://ecommerce-app-96c5b.appspot.com",
   ),
 );
 runApp(const MyApp());

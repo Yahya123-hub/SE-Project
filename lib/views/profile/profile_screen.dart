@@ -42,7 +42,9 @@ class ProfileScreen extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.topRight,
                   child: const Icon(Icons.edit,color: whiteColor,),
-                ).onTap(() { 
+                ).onTap(() {
+                   controller.nameController.text = data['name'];
+                   controller.passController.text = data['password'];
                   Get.to(()=> editProfile(data: data));
                 }),
               ),
@@ -54,7 +56,9 @@ class ProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal:8.0),
                 child: Row(
                   children: [
-                    Image.asset(dp,width: 100,fit: BoxFit.cover).box.roundedFull.clip(Clip.antiAlias).make(),
+                    data['imageUrl']==''
+                    ? Image.asset(dp,width: 100,fit: BoxFit.cover).box.roundedFull.clip(Clip.antiAlias).make()
+                    : Image.network(data['imageUrl'],width: 100,fit: BoxFit.cover).box.roundedFull.clip(Clip.antiAlias).make(),
                     10.widthBox,
                     Expanded(child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

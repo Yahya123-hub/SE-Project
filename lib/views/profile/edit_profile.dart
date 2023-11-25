@@ -11,6 +11,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
+bool isWeb() {
+  // Use kIsWeb if available, or check the platform if kIsWeb is not available
+  return kIsWeb || Platform.isAndroid || Platform.isIOS || Platform.isFuchsia;
+}
 class editProfile extends StatelessWidget {
 
   final dynamic data;
@@ -19,8 +24,8 @@ class editProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.find<profileController>();
-    controller.nameController.text = data['name'];
-    controller.passController.text = data['password'];
+    // controller.nameController.text = data['name'];
+    // controller.passController.text = data['password'];
 
     return bgWidget(
       child: Scaffold(
@@ -29,27 +34,31 @@ class editProfile extends StatelessWidget {
           ()=> Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // controller.profile_path.isEmpty 
-              // ? Image.asset(dp,width: 100,fit: BoxFit.cover).box.roundedFull.clip(Clip.antiAlias).make() 
-              // : Image.file(
-              //   File(controller.profile_path.value),
-              //   width: 100,
-              //   fit: BoxFit.cover,
+              controller.profile_path.isEmpty 
+              ? Image.asset(dp,width: 100,fit: BoxFit.cover).box.roundedFull.clip(Clip.antiAlias).make() 
+              : Image.file(
+                File(controller.profile_path.value),
+                width: 100,
+                fit: BoxFit.cover,
+              
           
-              // ).box.roundedFull.clip(Clip.antiAlias).make(),
-              controller.profile_path.isEmpty
-              ? Image.asset(dp, width: 100, fit: BoxFit.cover).box.roundedFull.clip(Clip.antiAlias).make()
-              : kIsWeb
-                  ? Image.network(
-                      controller.profile_path.value,
-                      width: 100,
-                      fit: BoxFit.cover,
-                    ).box.roundedFull.clip(Clip.antiAlias).make()
-                  : Image.file(
-                      File(controller.profile_path.value),
-                      width: 100,
-                      fit: BoxFit.cover,
-                    ).box.roundedFull.clip(Clip.antiAlias).make(),
+              ).box.roundedFull.clip(Clip.antiAlias).make(),
+              
+
+              // controller.profile_path.isEmpty
+              // ? Image.asset(dp, width: 100, fit: BoxFit.cover).box.roundedFull.clip(Clip.antiAlias).make()
+              // : kIsWeb
+              //     ? Image.network(
+              //         controller.profile_path.value,
+              //         width: 100,
+              //         fit: BoxFit.cover,
+              //       ).box.roundedFull.clip(Clip.antiAlias).make()
+              //     : Image.file(
+              //         File(controller.profile_path.value),
+              //         width: 100,
+              //         fit: BoxFit.cover,
+              //       ).box.roundedFull.clip(Clip.antiAlias).make(),
+                    
               10.heightBox,
               button(
                 color: blackColor,
@@ -63,11 +72,25 @@ class editProfile extends StatelessWidget {
                 customTextField(controller: controller.nameController,hint: nameHint,title: name,isPwd: false),
                 customTextField(controller: controller.passController,hint: passwordExample,title: password,isPwd: true),
                 20.heightBox,
-                SizedBox(
+                controller.isLoading.value
+                  ? const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(blackColor),
+                  )
+                  : SizedBox(
                   width: context.screenWidth -60,
                   child: button(
                   color: blackColor,
-                  onPress: (){},
+                  onPress: ()async{
+                    controller.isLoading(true);
+                    await controller.uploadDP();
+                    await controller.updateProfile(
+                      imgUrl: controller.profileImageLink,
+                      name: controller.nameController.text,
+                      password: controller.passController.text
+                    );
+                    VxToast.show(context, msg: "User data updated!");
+                    
+                  },
                   textColor: whiteColor,
                   title: "Save Changes"),
                 ),
