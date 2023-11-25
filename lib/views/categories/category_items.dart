@@ -1,4 +1,6 @@
 import 'package:ecommerce_app/consts/consts.dart';
+import 'package:ecommerce_app/controllers/productController.dart';
+import 'package:ecommerce_app/controllers/profileController.dart';
 import 'package:ecommerce_app/views/categories/product_details.dart';
 import 'package:ecommerce_app/widgets/background.dart';
 import 'package:flutter/material.dart';
@@ -12,20 +14,22 @@ class categoryDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<ProductController>();
     return bgWidget(
       child: Scaffold(
         appBar: AppBar(
           title: title!.text.fontFamily(bold).white.make(),
         ),
         body: Container(
-          padding: EdgeInsets.all(12),
+          padding: EdgeInsets.all(8),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: List.generate(6, (index) => "baby clothing".text.size(12).fontFamily(semibold).color(darkFontGrey).makeCentered().box.size(120, 60).margin(EdgeInsets.symmetric(horizontal: 4)).white.rounded.make()),
+                  children: List.generate(controller.sub_category.length, (index) => "${controller.sub_category[index]}".text.size(12).fontFamily(semibold).color(darkFontGrey).makeCentered().box.size(120, 60).margin(EdgeInsets.symmetric(horizontal: 4)).white.rounded.make()),
                 ),
               ),
 
