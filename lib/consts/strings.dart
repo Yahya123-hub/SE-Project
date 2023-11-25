@@ -57,4 +57,4 @@ supportPolicy = "Support Policy",
 productsYouMayAlsoLike = "Products you may also like";
 
 //profile 
-const wishlist = "My Wishlist", orders = "My Orders", messages="Messages";
+const wishlist = "My Wishlist", orders = "My Orders", messages="Messages",oldpass = "Old Password",newpass = "New Password";
